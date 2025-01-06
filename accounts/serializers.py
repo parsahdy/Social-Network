@@ -8,8 +8,8 @@ User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
-    password1 = serializers.CharField(required=True)
-    password2 = serializers.CharField(required=True)
+    password_1 = serializers.CharField(required=True)
+    password_2 = serializers.CharField(required=True)
 
     class Meta:
         model = User
