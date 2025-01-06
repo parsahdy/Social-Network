@@ -4,11 +4,12 @@ from .models import Post, PostFile
 
 
 
-class PostFileInlineAdmin(admin.TabularInline):
+class PostFileInlineAdmin(admin.StackedInline):
     model = PostFile
     fields = ('file', )
-
-
+    extra = 0
+    can_delete = False
+    
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
