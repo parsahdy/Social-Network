@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Post(models.Model):
-    tilte = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
     caption = models.TextField(max_length=512)
     is_active = models.BooleanField(default=True)
     is_public = models.BooleanField(default=True)
