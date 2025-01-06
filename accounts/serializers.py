@@ -8,8 +8,8 @@ User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
-    password_1 = serializers.CharField(required=True)
-    password_2 = serializers.CharField(required=True)
+    password_1 = serializers.CharField(required=True, write_only=True)
+    password_2 = serializers.CharField(required=True, write_only=True)
 
     class Meta:
         model = User
@@ -34,8 +34,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
-            first_name=validated_data.get['first_name', ''],
-            last_name=validated_data.get['last_name', ''],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
             password=validated_data['password_1']
         )
 
