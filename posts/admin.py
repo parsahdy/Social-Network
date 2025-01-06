@@ -5,6 +5,7 @@ from .models import Post, PostFile
 
 
 class PostFileInlineAdmin(admin.TabularInline):
+    model = PostFile
     fields = ('file', )
 
 
