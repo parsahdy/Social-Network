@@ -15,6 +15,9 @@ class Post(models.Model):
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
 
+    def __str__(self):
+        return self.title
+
 
 class PostFile(models.Model):
     post = models.ForeignKey(to='posts.Post', on_delete=models.CASCADE)
