@@ -31,13 +31,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         return super(RegisterSerializer, self).validate(attrs)
     
     def create(self, validated_data):
-        user = User.objects.create(
+        user = User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
             first_name=validated_data.get['first_name', ''],
-            last_name=validated_data.get['last_name', '']
+            last_name=validated_data.get['last_name', ''],
+            password=validated_data['password_1']
         )
 
-        user.set_password(validated_data['password_10'])
-        user.save()
+        #user.set_password(validated_data['password_10'])
+        #user.save()
         return user
