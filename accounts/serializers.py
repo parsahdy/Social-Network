@@ -3,11 +3,11 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
-User = get_user_model
+User = get_user_model()
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(requiered=True, validator=[UniqueValidator(queryset=User.objects.all())])
+    email = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
     password1 = serializers.CharField(required=True)
     password2 = serializers.CharField(required=True)
 
@@ -16,7 +16,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = (
             'email', 'username', 'password_1', 'password_2',
             'first_name', 'last_name'
-            )
+        )
         extra_kwargs = {
             'first_name': {'required': False},
             'last_name': {'required': False}
