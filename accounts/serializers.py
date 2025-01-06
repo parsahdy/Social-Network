@@ -40,3 +40,4 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         user.set_password(validated_data['password_10'])
         user.save()
+        return user
