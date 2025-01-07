@@ -33,7 +33,7 @@ class PostFile(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(to=Post, on_delete=models.PROTECT, related_name='comment')
+    post = models.ForeignKey(to=Post, on_delete=models.PROTECT, related_name='comments')
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.TextField()
     is_proved = models.BooleanField(default=False)
