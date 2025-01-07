@@ -12,7 +12,6 @@ class Post(models.Model):
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
 
-
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
@@ -33,9 +32,27 @@ class PostFile(models.Model):
 
 
 
-#class Comment(models.Model):
-    #pass
+class Comment(models.Model):
+    post = models.ForeignKey(to=Post, on_delete=models.PROTECT, related_name='comment')
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    text = models.TextField()
+    is_proved = models.BooleanField(default=False)
+    created_time = models.DateTimeField(auto_now_add=True)
+    updated_time = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'comment'
+        verbose_name_plural = 'comments'
 
 
-#class Like(models.Model):
-    #pass
+
+class Like(models.Model):
+    post = models.ForeignKey(to=Post, on_delete=models.PROTECT, related_name='likes')
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    is_liked = models.BooleanField(default=True)
+    created_time = models.DateTimeField(auto_now_add=True)
+    updated_time = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'like'
+        verbose_name_plural = 'likes'
