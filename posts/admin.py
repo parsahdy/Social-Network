@@ -13,7 +13,7 @@ class PostFileInlineAdmin(admin.StackedInline):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'is_active', 'created_time')
+    list_display = ('title', 'user', 'is_active', 'created_time')
     inlines = (PostFileInlineAdmin,)
 
 
