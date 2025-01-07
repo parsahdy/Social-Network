@@ -34,3 +34,31 @@ class PostListView(APIView):
         posts = Post.objects.filter(is_active=True)
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
+
+
+
+
+class CommentView(APIView):
+    permission_classes = [IsAuthenticated]
+
+
+    def get_post(self, post_pk):
+        try:
+            return Post.objects.get(pk=post_pk)
+        except Post.DoesNotExist:
+            return False
+        
+
+    def get(self, request, post_pk):
+        post = self.get_post(post_pk)
+        if not post:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+
+        # comments = Comment.objects.filter(post=post, is_proved=True)
+        comments = post.comments.filter(is_approved=True)
+
+
+
+class LikeView(APIView):
+    pass

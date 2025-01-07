@@ -36,7 +36,7 @@ class Comment(models.Model):
     post = models.ForeignKey(to=Post, on_delete=models.PROTECT, related_name='comments')
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.TextField()
-    is_proved = models.BooleanField(default=False)
+    is_approved = models.BooleanField(default=False)
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
 
