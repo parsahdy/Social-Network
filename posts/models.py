@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.db import models
 
 
 
 class Post(models.Model):
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     caption = models.TextField(max_length=512)
     is_active = models.BooleanField(default=True)
